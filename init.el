@@ -346,8 +346,6 @@
 ; Fixing another key binding bug in iedit mode
 (define-key global-map (kbd "C-c o") 'iedit-mode)
 
-
-
 ;; Setting global key bindings.
 (global-set-key [f3] 'toggle-menubar)                     ;; Turns menubar on and off.
 (global-set-key [f5] 'flyspell-mode)
