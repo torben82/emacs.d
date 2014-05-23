@@ -37,7 +37,7 @@
 ;; To integrate with AUCTeX, use 
 (setq reftex-plug-into-AUCTeX t)
 
-;; Lad vï¿½re med at lave irriterende tildebackups
+;; Lad være med at lave irriterende tildebackups
 (setq make-backup-files nil)
 
 ;; Der skal bruge yap i stedet for xdvi
@@ -358,11 +358,11 @@
 (global-set-key [(control tab)] 'other-window)  ;; Switch to previously used buffer.
 (global-set-key [(control z)] 'undo)                      ;; Simple undo.
 (global-set-key [(insert)] 'kill-buffer)                  ;; Disables overwrite mode. Kills current buffer.
-(global-set-key [(control j)] 'goto-line)                 ;; Gï¿½ til bestemt linie.
+(global-set-key [(control j)] 'goto-line)                 ;; Gå til bestemt linie.
 ;;(global-set-key [(control x) (control z)] 'comment-region);; Comment marked region.
 (global-set-key [(control x) (control z)] 'comment-or-uncomment-region);; Comment marked region.
 
 (global-set-key [(control x) (control i)] 'indent-region) ;; Indent marked region.
 ;;(global-set-key [(control c) (control x) (control z)] 'uncomment-region);; Comment marked region.
-;; adding comment to test github!
+
 (global-set-key [(meta q)] 'TeX-complete-symbol)
