@@ -1,9 +1,9 @@
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(LaTeX-command "latex")
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(LaTeX-command "pdflatex")
  '(TeX-output-view-style (quote (("^dvi$" ("^landscape$" "^pstricks$\\|^pst-\\|^psfrag$") "%(o?)dvips -t landscape %d -o && gv %f") ("^dvi$" "^pstricks$\\|^pst-\\|^psfrag$" "%(o?)dvips %d -o && gv %f") ("^dvi$" ("^a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4$" "^landscape$") "%(o?)yap %dS -paper a4r -s 0 %d") ("^dvi$" "^a4\\(?:dutch\\|paper\\|wide\\)\\|sem-a4$" "%(o?)yap %dS -paper a4 %d") ("^dvi$" ("^a5\\(?:comb\\|paper\\)$" "^landscape$") "%(o?)yap %dS -paper a5r -s 0 %d") ("^dvi$" "^a5\\(?:comb\\|paper\\)$" "%(o?)yap %dS -paper a5 %d") ("^dvi$" "^b5paper$" "%(o?)yap %dS -paper b5 %d") ("^dvi$" "^letterpaper$" "%(o?)yap %dS -paper us %d") ("^dvi$" "^legalpaper$" "%(o?)yap %dS -paper legal %d") ("^dvi$" "^executivepaper$" "%(o?)yap %dS -paper 7.25x10.5in %d") ("^dvi$" "." "%(o?)yap %dS %d") ("^pdf$" "." "xpdf -remote %s -raise %o %(outpage)") ("^html?$" "." "netscape %o"))))
  '(canlock-password "59a5bf0bb174ee1894a3c620eb2c3431d1f85750")
  '(case-fold-search t)
@@ -15,10 +15,10 @@
  '(tool-bar-mode nil nil (tool-bar))
  '(transient-mark-mode t))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(default ((t (:stipple nil :background "black" :foreground "white" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :family "adobe-courier"))))
  '(font-latex-title-1-face ((t (:inherit font-latex-title-2-face))))
  '(font-latex-title-2-face ((t (:inherit font-latex-title-3-face))))
@@ -26,6 +26,7 @@
 (setq-default TeX-master "main.tex") 
 (autoload 'reftex-mode    "reftex" "RefTeX Minor Mode" t)
 (autoload 'turn-on-reftex "reftex" "RefTeX Minor Mode" t)
+
 
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex) ; with AUCTeX LaTeX mode
 ;  (add-hook 'latex-mode-hook 'turn-on-reftex)) ; with Emacs latex mode
@@ -42,6 +43,9 @@
 
 ;; Der skal bruge yap i stedet for xdvi
 (setq-default tex-dvi-view-command "yap")
+
+(setq-default ispell-program-name "aspell")
+
 
 ;; Redo-dims
 ;;(require 'redo)
@@ -364,3 +368,11 @@
 ;;(global-set-key [(control c) (control x) (control z)] 'uncomment-region);; Comment marked region.
 
 (global-set-key [(meta q)] 'TeX-complete-symbol)
+
+
+;; Auto complete Hack
+(add-to-list 'load-path "~/.emacs.d/")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
+(ac-config-default)
+(add-hook 'LaTeX-mode-hook 'auto-complete-mode)
